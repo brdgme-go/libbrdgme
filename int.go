@@ -1,4 +1,4 @@
-package helper
+package libbrdgme
 
 import (
 	"math/rand"
