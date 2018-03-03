@@ -54,3 +54,15 @@ func TestPlural(t *testing.T) {
 		assert.Equal(t, c.Expected, Plural(2, c.Input))
 	}
 }
+
+func TestJoinStringsAnd(t *testing.T) {
+	assert.Equal(t, "one", CommaListAnd([]string{"one"}))
+	assert.Equal(t, "one and two", CommaListAnd([]string{"one", "two"}))
+	assert.Equal(t, "one, two and three", CommaListAnd([]string{"one", "two", "three"}))
+}
+
+func TestJoinStringsOr(t *testing.T) {
+	assert.Equal(t, "one", CommaListOr([]string{"one"}))
+	assert.Equal(t, "one or two", CommaListOr([]string{"one", "two"}))
+	assert.Equal(t, "one, two or three", CommaListOr([]string{"one", "two", "three"}))
+}

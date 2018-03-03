@@ -1,6 +1,7 @@
 package libbrdgme
 
 import (
+	"bytes"
 	"fmt"
 	"math"
 	"regexp"
@@ -234,4 +235,28 @@ func Plural(n int, s string) string {
 		return s[:len(s)-1] + "ies"
 	}
 	return s + "s"
+}
+
+func JoinStrsWithFinal(strs []string, normJoin, finalJoin string) string {
+	buf := bytes.NewBufferString("")
+	strsLen := len(strs)
+	for i, s := range strs {
+		if i > 0 {
+			if i == strsLen-1 {
+				buf.WriteString(finalJoin)
+			} else {
+				buf.WriteString(normJoin)
+			}
+		}
+		buf.WriteString(s)
+	}
+	return buf.String()
+}
+
+func CommaListAnd(strs []string) string {
+	return JoinStrsWithFinal(strs, ", ", " and ")
+}
+
+func CommaListOr(strs []string) string {
+	return JoinStrsWithFinal(strs, ", ", " or ")
 }
